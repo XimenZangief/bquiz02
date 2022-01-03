@@ -37,7 +37,7 @@
 					<div class="">
 						
 						<?php
-							// if成立則echo getdo，else echo home
+							// if成立則echo $_GET['do']，else echo home
 							$do=$_GET['do']??'home';
 							$file='front/'.$do.'.php';
 							if(file_exists($file)){
