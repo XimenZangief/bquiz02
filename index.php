@@ -35,6 +35,18 @@
 						<a href="?do=login">會員登入</a>
 					</span>
 					<div class="">
+						
+						<?php
+							// if成立則echo getdo，else echo home
+							$do=$_GET['do']??'home';
+							$file='front/'.$do.'.php';
+							if(file_exists($file)){
+								include $file;
+							}else{
+								include 'front/home.php';
+							}
+						
+						?>
 					</div>
 				</div>
 			</div>
