@@ -11,8 +11,8 @@
         </tr>
         <tr>
             <td>
-                <button>登入</button>
-                <button>清除</button>
+                <button onclick="login()">登入</button>
+                <button onclick="reset()">清除</button>
             </td>
             <td>
                 <a href="index.php?do=forget">忘記密碼</a>
@@ -21,3 +21,34 @@
         </tr>
     </table>
 </fieldset>
+
+<script>
+    function reset() {
+        $("#acc,#pwd").val("");
+    }
+
+    function login(){
+        let user={
+            acc: $("#acc").val(),
+            pwd: $("#pwd").val()
+        }
+
+        $.post("api/chk_acc.php",{acc:user.acc},(chk)=>{
+            if(parseInt(chk)==0){
+                alert("查無帳號");
+            }else{
+                $.post("api/chk_pwd.php", user,(chk)=>{
+                    if(parseInt(chk)==0){
+                        alert("密碼錯誤");
+                    }else{
+                        if(user.acc=="admin"){
+                            location.href="back.php";
+                        }else{
+                            location.href="index.php";
+                        }
+                    }
+                })
+            }
+        })
+    }
+</script>
