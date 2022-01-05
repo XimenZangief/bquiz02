@@ -24,11 +24,11 @@
 		<?php include "./front/header.php" ?>
 		<div id="mm">
 			<div class="hal" id="lef">
+				<a class="blo" href="?do=admin">帳號管理</a>
 				<a class="blo" href="?do=po">分類網誌</a>
-				<a class="blo" href="?do=news">最新文章</a>
-				<a class="blo" href="?do=pop">人氣文章</a>
-				<a class="blo" href="?do=know">講座訊息</a>
-				<a class="blo" href="?do=que">問卷調查</a>
+				<a class="blo" href="?do=news">最新文章管理</a>
+				<a class="blo" href="?do=know">講座管理</a>
+				<a class="blo" href="?do=que">問卷管理</a>
 			</div>
 			<div class="hal" id="main">
 				<div>
@@ -38,7 +38,7 @@
 						if(isset($_SESSION['login'])){
 							if($_SESSION['login']=="admin"){
 					?>
-						<br>歡迎admin，<button onclick="location.href='back.php'">管理</button>|<button onclick="logout()">登出</button>
+						<br>歡迎admin，<button>管理</button>|<button onclick="logout()">登出</button>
 					<?php 	}else{ ?>
 						歡迎<?= $_SESSION['login']; ?>，<button onclick="logout()">登出</button>						
 					<?php 	}
@@ -52,11 +52,11 @@
 						<?php
 							// if成立則echo $_GET['do']，else echo home
 							$do=$_GET['do']??'home';
-							$file='front/'.$do.'.php';
+							$file='back/'.$do.'.php';
 							if(file_exists($file)){
 								include $file;
 							}else{
-								include 'front/home.php';
+								include 'back/home.php';
 							}
 						
 						?>
