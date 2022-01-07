@@ -34,7 +34,18 @@
                     </div>
                 </td>
                 <td>
-                    <?= $row['good']; ?>個人說<img src='icon/02B03.jpg' style='width:25px'>
+                    <span><?= $row['good']; ?></span>個人說<img src='icon/02B03.jpg' style='width:25px'>
+                    <?php
+                    if (isset($_SESSION['login'])) {
+                        $chk = $Logs->math('count', '*', ['news' => $row['id'], 'user' => $_SESSION['login']]);
+                        if ($chk = 0) {
+                            echo "<a class='g' data-news='{$row['id']}' data-type='1'>收回讚</a>";
+                        } else {
+                            echo "<a class='g' data-news='{$row['id']}' data-type='2'>讚</a>";
+                        }
+                    }
+
+                    ?>
                 </td>
             </tr>
         <?php
