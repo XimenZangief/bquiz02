@@ -34,11 +34,11 @@
                     </div>
                 </td>
                 <td>
-                    <span><?= $row['good']; ?></span>個人說<img src='icon/02B03.jpg' style='width:25px'>
+                    <span><?= $row['good']; ?></span>個人說<img src='icon/02B03.jpg' style='width:25px'>-
                     <?php
                     if (isset($_SESSION['login'])) {
                         $chk = $Logs->math('count', '*', ['news' => $row['id'], 'user' => $_SESSION['login']]);
-                        if ($chk = 0) {
+                        if ($chk > 0) {
                             echo "<a class='g' data-news='{$row['id']}' data-type='1'>收回讚</a>";
                         } else {
                             echo "<a class='g' data-news='{$row['id']}' data-type='2'>讚</a>";
@@ -85,4 +85,35 @@
         function() {
             $(this).parent().find(".pop").toggle();
         })
+
+    $(".g").on("click", function() {
+        let type = $(this).data('type');
+        let news = $(this).data('news');
+
+        $.post("api/good.php", {
+            type,
+            news
+        }, () => {
+            // 偷吃步
+            // location.reload();
+            switch (type) {
+                case 1:
+                    //收回讚
+                    $(this).text("讚");
+                    $(this).data("type", 2);
+                    // 將文字轉換成數字並-1
+                    count=$(this).siblings("span").text()*1;
+                    $(this).siblings("span").text(count-1);
+                    break;
+                case 2:
+                    // 給讚
+                    $(this).text("收回讚");
+                    $(this).data("type", 1);
+                    // 將文字轉換成數字並+1
+                    count=$(this).siblings("span").text()*1;
+                    $(this).siblings("span").text(count+1);
+                    break;
+                } 
+         })
+    })
 </script>

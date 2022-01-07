@@ -27,7 +27,7 @@
                 <?php
                 if(isset($_SESSION['login'])){
                     $chk=$Logs->math('count','*',['news'=>$row['id'],'user'=>$_SESSION['login']]);
-                    if($chk=0){
+                    if($chk>0){
                         echo "<a class='g' data-news='{$row['id']}' data-type='1'>收回讚</a>";
                     }
                     else{
@@ -36,7 +36,6 @@
                 }
 
                 ?>
-
                 </td>
             </tr>
         <?php
@@ -85,7 +84,7 @@
             news
         }, () => {
             // 偷吃步
-            //location.reload()
+            // location.reload()
             switch (type) {
                 case 1:
                     //收回讚
@@ -103,7 +102,6 @@
                     count=$(this).siblings("span").text()*1;
                     $(this).siblings("span").text(count+1);
                     break;
-
             }
         })
     })
