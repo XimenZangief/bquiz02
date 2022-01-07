@@ -36,19 +36,34 @@
 <div class="post" id="p4">4</div>
 
 <script>
+  // 不使用id的選擇法，擇一
+  // $(".post").first().show();
+  // $(".post").eq(0).show();
+  // 使用id的選擇法
   $("#p1").show();
   // 需要使用到$(this)的情況才使用function(){}
   // 沒有的話可以用匿名函式()=>{}取代之
   $(".tag").on("click", function() {
-    // 專有名詞而已，鏈式呼叫
-    // 取得「按下的當下區塊」.tag的#id並將值的t替換成p，ex:t1=>p1
-    let id = $(this).attr('id').replace("t", "p");
-
     //先隱藏全部的.post再顯示#id達到頁籤效果
     $(".tag").removeClass("active");
     $(this).addClass("active");
     $(".post").hide();
+
+    
+    //使用id的做法
+    // 專有名詞而已，鏈式呼叫
+    // 取得「按下的當下區塊」.tag的#id並將值的t替換成p，ex:t1=>p1
+    let id = $(this).attr('id').replace("t", "p");
     $("#" + id).show();
     console.log(id);
+
+    // 或是選擇直接獲取DOM的index值，可用在eq()上
+    // let idx=$(this).index();
+    // $(this).eq(idx).show();
+
+    
+
+
+    
   })
 </script>
