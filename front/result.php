@@ -12,11 +12,16 @@ $subject = $Ques->find($_GET['id']);
         // 同理，但網址有傳id所以直接抓id
         $options = $Ques->all(['parent' => $_GET['id']]);
         foreach ($options as $key => $opt) {
+            // 事先確認專題比例分母是否為0，是則改成1(避免分母為0)，否則不改動
+            $div=($subject['count']==0)?1:$subject['count'];
+            $rate=round($opt['count']/$idv,2);
+
         ?>
-            <p>
-                <input type="radio" name="opt" value="<?= $opt['id']; ?>">
-                <?= $opt['text']; ?>
-            </p>
+            <div style="display:flex; margin:15px 0;">
+                <div style="width: 40%;"><?=($key+1).".".$opt['text'];?></div>
+            </div>
+            <div style="height: 25px; background:grey; width:<?=40*$rate;?>"></div>
+            <div><?=$opt['count'];?>(<?=$rate*100;?>%)</div>
         <?php } ?>
-        <div class="ct"><input type="submit" value="我要投票"></div>
+        <div class="ct"><input type="button" onclick="location.href='?do=que'" value="返回"></div>
 </fieldset>

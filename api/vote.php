@@ -8,6 +8,6 @@ $Ques->save($opt);
 $Ques->save($subject);
 
 // 題目要求返回投票結果
-to("../index.php?do=result");
+to("../index.php?do=result&id=".$subject['id']);
 
 ?>
