@@ -3,7 +3,7 @@
     <form action="api/que.php" method="post">
         <div style="display:flex;">
             <div class='clo'>問卷名稱</div>
-            <div><input type="text" name="sbuject"></div>
+            <div><input type="text" name="subject"></div>
         </div>
         <div class='clo' id='opt'>
             <div>

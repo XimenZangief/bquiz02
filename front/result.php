@@ -14,7 +14,7 @@ $subject = $Ques->find($_GET['id']);
         foreach ($options as $key => $opt) {
             // 事先確認專題比例分母是否為0，是則改成1(避免分母為0)，否則不改動
             $div=($subject['count']==0)?1:$subject['count'];
-            $rate=round($opt['count']/$idv,2);
+            $rate=round($opt['count']/$div,2);
 
         ?>
             <div style="display:flex; margin:15px 0;">
