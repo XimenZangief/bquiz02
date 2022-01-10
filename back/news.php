@@ -24,7 +24,7 @@
                     <td><?=$start+1+$key;?></td>
                     <td><?= $row['title']; ?></td>
                     <td>
-                    <input type="checkbox" name="sh[]" value="<?=$row['id'];?>"<?=$chk;?>>>
+                    <input type="checkbox" name="sh[]" value="<?=$row['id'];?>"<?=$chk;?>>
                     </td>
                     <td>
                     <input type="checkbox" name="del[]" value="<?$row['id'];?>">
